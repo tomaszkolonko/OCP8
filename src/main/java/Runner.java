@@ -1,9 +1,10 @@
 public class Runner {
 
-    public static void main(String[] args) {
+    public static void main (String[] args) throws ExceptionTwo {
 
         try {
             throw new ExceptionOne();
+            throw new ExceptionTwo();
         } catch (ExceptionOne e) {
             System.out.println("Exception One was caught");
             if(true) {
