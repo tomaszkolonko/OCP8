@@ -20,72 +20,31 @@ public final class DateTime {
     private DateTime() {}
 
     public static void main(String[] args) {
-        LocalDateTime nowDateTimeOne = LocalDateTime.now();
+        Locale myLocale = Locale.getDefault();
+        System.out.println("Default Locale: " + myLocale);
 
-        // Period: A period of days, months or years
+        LocalDateTime localDateTime = LocalDateTime.of(2024, 4, 6, 13, 34, 12);
+        System.out.println("Date and Time: " + localDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("US/Pacific"));
 
-        Period period = Period.ofMonths(1);
-        System.out.println("Period is: " + period);
-        LocalDateTime dateTimeInPast = nowDateTimeOne.minus(period);
-        System.out.println("One month in the past: " + dateTimeInPast);
-        LocalDateTime dateTimeInFuture = nowDateTimeOne.plus(period);
-        System.out.println("One month in the future: " + dateTimeInFuture);
+        Locale locITandIT = new Locale("it", "IT");
+        Locale locITandCH = new Locale("it", "CH");
+        Locale locFRandFR = new Locale("fr", "FR");
+        Locale locXXandXX = new Locale("xx", "xx");
 
-        System.out.println("\n ======================= \n");
+        System.out.println("locITandIT: " + zonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locITandIT)));
+        System.out.println("locITandCH: " + zonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locITandCH)));
+        System.out.println("locFRandFR: " + zonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locFRandFR)));
+        System.out.println("locXXandXX: " + zonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locXXandXX)));
+        System.out.println("locXXandXX: " + zonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(myLocale)));
 
+        System.out.println("locITandIT country: " + locITandIT.getDisplayCountry());
+        System.out.println("locITandIT language: " + locITandIT.getDisplayLanguage());
 
-        // Duration: A period of minutes or hours
+        Locale locBR = new Locale("pt", "BR");
+        System.out.println("Brazilian language in Brazil: " + locBR.getDisplayLanguage(locBR));
+        System.out.println("Brazilian language in US: " + locBR.getDisplayLanguage(myLocale));
 
-        LocalTime start = LocalTime.of(10, 0, 0);
-        LocalTime end = LocalTime.of(10, 29,59);
-
-        System.out.println("Coffee breakt starts at " + start + " and ends late at " + end);
-        long numberOfMinutes = ChronoUnit.MINUTES.between(start, end);
-        System.out.println("end - start is " + numberOfMinutes);
-
-        Duration duration = Duration.ofMinutes(numberOfMinutes);
-        System.out.println(duration); // PT stands for period of time
-
-        System.out.println("\n ======================= \n");
-
-
-        // Instant: represents an instant in time
-        // It's like a timestamp in seconds starting at 01.01.1970
-
-        ZonedDateTime nowZonedDateTime = ZonedDateTime.now();
-        Instant instant = nowZonedDateTime.toInstant();
-        System.out.println("The instant of now is: " + instant);
-
-        System.out.println("\n ======================= \n");
-
-        LocalDateTime dateTime = LocalDateTime.now();
-        ZoneId zone = ZoneId.of("Europe/Zurich");
-        ZoneOffset zoneOffset = zone.getRules().getOffset(dateTime);
-        System.out.println("DateTime: " + dateTime);
-        System.out.println("Zone: " + zone);
-        System.out.println("zoneOffset: " + zoneOffset);
-
-        System.out.println("\n ======================= \n");
-
-        Instant instantTwo = dateTime.toInstant(zoneOffset);
-        System.out.println("instantTwo: " + instantTwo); // instant is always GMT
-
-        Instant now = Instant.now();
-        System.out.println("Seconds since epoch: " + now.getEpochSecond());
-
-        System.out.println("\n ======================= \n");
-
-        // Formatting
-
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm")));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("hh:mm yyyy/MM/dd")));
-
-        System.out.println("\n ======================= \n");
-
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.UK)));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.UK)));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(Locale.UK)));
 
 
 
