@@ -9,8 +9,11 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Locale;
 
 public final class DateTime {
 
@@ -69,6 +72,23 @@ public final class DateTime {
 
         Instant now = Instant.now();
         System.out.println("Seconds since epoch: " + now.getEpochSecond());
+
+        System.out.println("\n ======================= \n");
+
+        // Formatting
+
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm")));
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")));
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("hh:mm yyyy/MM/dd")));
+
+        System.out.println("\n ======================= \n");
+
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.UK)));
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.UK)));
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(Locale.UK)));
+
+
+
 
 
 
