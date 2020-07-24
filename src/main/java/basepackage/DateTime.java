@@ -2,6 +2,9 @@ package basepackage;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public final class DateTime {
 
@@ -42,6 +45,19 @@ public final class DateTime {
 
         System.out.println("\n========================\n");
 
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(nowDateTimeFour, ZoneId.of("US/Pacific"));
+        System.out.println("zonedDateTime: " + zonedDateTime);
+
+        System.out.println("\n========================\n");
+        System.out.println("Show list of all zones:");
+
+        Set<String> zoneIds = ZoneId.getAvailableZoneIds();
+        List<String> zoneList = new ArrayList<>(zoneIds);
+        for(String zoneId : zoneIds) {
+            if(zoneId.toLowerCase().contains("europe")) {
+                System.out.println(zoneId);
+            }
+        }
 
     }
 
