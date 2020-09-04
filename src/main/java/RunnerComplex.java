@@ -28,7 +28,7 @@ public class RunnerComplex {
 
     private void printAnimalList(List<? extends Animal> animals) {
         for(Animal animal : animals) {
-            animal.getType();
+            System.out.println(animal.getType());
         }
     }
 
@@ -36,10 +36,6 @@ public class RunnerComplex {
 //        animals.add(new Animal("Animal"));
 //        animals.add(new Dog(123));
         System.out.println("Adding with this construct of \"List<? extends Animal> animals\" is not possilbe");
-
-        for(Animal animal : animals) {
-            System.out.println(animal.getType());
-        }
     }
 
     private void addToAnimalListSafely(List<? super Dog> animals) {
