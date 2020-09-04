@@ -1,18 +1,18 @@
 public class Animal {
-    String name;
+    String type;
 
     public Animal() {
-        this.name = "Animal";
+        this.type = "Animal";
     }
-    public Animal(final String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+    public Animal(final String type) {
+        this.type = type;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(final String type) {
+        this.type = type;
     }
 }

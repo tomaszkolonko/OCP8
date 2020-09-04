@@ -15,7 +15,7 @@ public class RunnerSimple {
 
         System.out.println("\ninside the simpleArrayMethods");
         for(Animal animal : animals) {
-            System.out.println(animal.getName());
+            System.out.println(animal.getType());
         }
 
     }
@@ -32,7 +32,7 @@ public class RunnerSimple {
 
         System.out.println("\ninside the simpleCollectionMethod");
         for(Animal animal : animals) {
-            System.out.println(animal.getName());
+            System.out.println(animal.getType());
         }
     }
 
