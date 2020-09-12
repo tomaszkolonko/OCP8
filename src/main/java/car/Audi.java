@@ -5,23 +5,8 @@ package car;
  * especially of class member methods, don't forge to play with super
  */
 public class Audi extends Car {
+
     public Audi(final int numberOfTires) {
         super(numberOfTires);
-    }
-
-    public void tryOut() {
-
-        // what are the implications?
-        driveForward();
-        this.driveForward();
-
-        super.driveForward();
-
-        Car newCar = new Car(4);
-        newCar.driveForward();
-    }
-
-    protected void protectedTryOut() {
-        System.out.println("Hello from inside protectedTryOut() method in Audi.class");
     }
 }

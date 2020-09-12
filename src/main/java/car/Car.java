@@ -6,6 +6,10 @@ package car;
  */
 public class Car {
     private int numberOfTires;
+    public String publicString = "public string in Car";
+    protected String protectedString = "protected string in Car";
+    private String privateString = "private string in Car";
+
 
     public Car(final int numberOfTires) {
         this.numberOfTires = numberOfTires;
