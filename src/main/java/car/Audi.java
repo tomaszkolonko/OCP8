@@ -20,4 +20,8 @@ public class Audi extends Car {
         Car newCar = new Car(4);
         newCar.driveForward();
     }
+
+    protected void protectedTryOut() {
+        System.out.println("Hello from inside protectedTryOut() method in Audi.class");
+    }
 }
