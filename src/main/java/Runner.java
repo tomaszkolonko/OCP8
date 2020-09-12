@@ -1,4 +1,7 @@
 import car.Audi;
+import car.SubAudi;
+import other.Ford;
+import other.SubFord;
 
 public class Runner {
 
@@ -14,6 +17,19 @@ public class Runner {
         // System.out.println("audi protected string instance variable: " + ford.protectedString);
 
         ford.tryOut();
+
+
+        // Subclasses
+        audi.tryOut();
+
+        SubAudi subAudi = new SubAudi(4);
+        subAudi.tryOutSubAudi();
+
+        SubFord subFord = new SubFord(4);
+        subFord.tryOutSubFord();
+
+
+
     }
 
 }

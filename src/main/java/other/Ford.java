@@ -1,8 +1,10 @@
+package other;
+
 import car.Audi;
 import car.Car;
 
 /**
- * Be aware that Ford is in another package than Car !!
+ * Be aware that other.Ford is in another package than Car !!
  * But public and protected instance variables of Car are inherited and available here
  */
 public class Ford extends Car  {
@@ -12,9 +14,9 @@ public class Ford extends Car  {
     }
 
     public void tryOut() {
-        System.out.println("From inside Ford (public variable): " + publicString);
-        System.out.println("From inside Ford (protected variable): " + protectedString);
-//        System.out.println("From inside Ford (protected variable): " + privateString);
+        System.out.println("From inside other.Ford (public variable): " + publicString);
+        System.out.println("From inside other.Ford (protected variable): " + protectedString);
+//        System.out.println("From inside other.Ford (protected variable): " + privateString);
 
         Car car = new Car(4);
         System.out.println(car.publicString);
