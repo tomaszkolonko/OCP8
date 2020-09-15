@@ -1,11 +1,14 @@
-import static java.lang.Thread.sleep;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class SimpleMultiCatch {
-    public static void main(String[] args) throws ExceptionOne, ExceptionTwo {
+    public static void main(String[] args) {
         SimpleMultiCatch simpleMultiCatch = new SimpleMultiCatch();
         // simpleMultiCatch.catchOneException();
         simpleMultiCatch.catchSomeExceptions();
+        System.out.println("\n");
+        simpleMultiCatch.catchOneException();
     }
 
     // Example with two different exceptions
@@ -13,23 +16,23 @@ public class SimpleMultiCatch {
     private void catchSomeExceptions() {
         try {
             throwSomeExceptions();
-        } catch (Exception e) {
+        } catch (SQLException | IOException e) {
             System.out.println("catching a wild card exception???");
             e.printStackTrace();
 
             UtilityClass.sleepForASecond();
 
-            e = new ExceptionThree();
+//            e = new ExceptionThree();
             e.printStackTrace();
         }
     }
 
-    private void throwSomeExceptions() throws ExceptionOne, ExceptionTwo {
+    private void throwSomeExceptions() throws SQLException, IOException {
         Random random = new Random();
-        if(random.nextBoolean()) {
-            throw new ExceptionOne();
+        if (random.nextBoolean()) {
+            throw new SQLException();
         } else {
-            throw new ExceptionTwo();
+            throw new IOException();
         }
     }
 
@@ -44,6 +47,7 @@ public class SimpleMultiCatch {
 
             UtilityClass.sleepForASecond();
 
+            // legal but bad practice
             e = new ExceptionTwo(); // !!!!!
 
             System.out.println("exception after new assignment:");
@@ -54,5 +58,4 @@ public class SimpleMultiCatch {
     private void throwASingelException() throws ExceptionOne {
         throw new ExceptionOne();
     }
-
 }
