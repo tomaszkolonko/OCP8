@@ -7,13 +7,13 @@ public class AssertionClass {
     }
 
     private void doSomeAssertions(int x) {
-        assert(x > 0);
+        assert(x >= 0);
         // then continue with the code of this method
         System.out.println("No assertions thrown in doSomeAssertions(int x)");
     }
 
     private void doSomeAssertionsWithMoreInfo(int x) {
-        assert(x > 0): "Assertion faild since x (" + x + ") is NOT bigger or equal zero";
+        assert(x >= 0): "Assertion faild since x (" + x + ") is NOT bigger or equal zero";
         // Then continue with the code of this mehtod
         System.out.println("No assertions thrown in doSomeAssertionsWithMoreInfo(int x)");
     }
