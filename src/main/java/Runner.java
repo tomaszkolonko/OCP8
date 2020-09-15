@@ -3,8 +3,11 @@ public class Runner {
     public static void main (String[] args) throws ExceptionTwo {
 
         try {
-            throw new ExceptionOne();
-            throw new ExceptionTwo();
+            if(true) {
+                throw new ExceptionOne();
+            } else {
+                throw new ExceptionTwo();
+            }
         } catch (ExceptionOne e) {
             System.out.println("Exception One was caught");
             if(true) {
