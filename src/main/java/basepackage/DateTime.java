@@ -1,6 +1,5 @@
 package basepackage;
 
-import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -12,7 +11,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 
 public final class DateTime {
@@ -27,9 +25,9 @@ public final class DateTime {
         Period period = Period.ofMonths(1);
         System.out.println("Period is: " + period);
         LocalDateTime dateTimeInPast = nowDateTimeOne.minus(period);
-        System.out.println("One month in the past: " + dateTimeInPast);
+        System.out.println(nowDateTimeOne + " One month in the past: " + dateTimeInPast);
         LocalDateTime dateTimeInFuture = nowDateTimeOne.plus(period);
-        System.out.println("One month in the future: " + dateTimeInFuture);
+        System.out.println(nowDateTimeOne + " One month in the future: " + dateTimeInFuture);
 
         System.out.println("\n ======================= \n");
 
