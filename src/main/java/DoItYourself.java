@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
@@ -23,6 +25,16 @@ public class DoItYourself {
                     // ignore exceptions on closing a file
                 }
             }
+        }
+    }
+
+    public void goWithCloseable() throws IOException {
+        try(Reader reader = new BufferedReader(new FileReader("FilePath"))) {
+            // read from file
+        } catch (IOException e) {
+            System.out.println("Some Logging");
+//            reader.close(); !!
+            throw e;
         }
     }
 

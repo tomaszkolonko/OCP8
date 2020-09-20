@@ -30,6 +30,7 @@ public class AutoCloseable {
     }
 
     public void notQuiteRight() {
+        // Why does this not work?
 //        try(String s = "Hello") {
 //            // Do sth.
 //        }
