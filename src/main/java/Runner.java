@@ -11,6 +11,7 @@ public class Runner {
         System.out.println("\n=====================\n");
 
         useResourceBundleClass();
+        useTrainProperties();
     }
 
     private static void useResourceBundleClass() {
@@ -29,6 +30,17 @@ public class Runner {
         // entspricht: resourceBundle = ResourceBundle.getBundle("Labels" Locale.getDefault());
         System.out.println(Locale.getDefault());
 
+        System.out.println("\n=====================\n");
     }
 
+    private static void useTrainProperties() {
+        Locale.setDefault(new Locale("en", "US"));
+        ResourceBundle resourceBundleEnglishUS = ResourceBundle.getBundle("Train", new Locale("en", "US"));
+        System.out.println(resourceBundleEnglishUS.getString("ride") + " " + resourceBundleEnglishUS.getString("train"));
+
+        ResourceBundle resourceBundleEnglishUK = ResourceBundle.getBundle("Train", new Locale("en", "UK"));
+        System.out.println(resourceBundleEnglishUK.getString("ride") + " " + resourceBundleEnglishUK.getString("train"));
+
+        System.out.println("\n=====================\n");
+    }
 }
