@@ -1,5 +1,8 @@
 import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class Runner {
 
@@ -12,6 +15,7 @@ public class Runner {
 
         useResourceBundleClass();
         useTrainProperties();
+        useInMemoryProperties();
     }
 
     private static void useResourceBundleClass() {
@@ -41,6 +45,32 @@ public class Runner {
         ResourceBundle resourceBundleEnglishUK = ResourceBundle.getBundle("Train", new Locale("en", "UK"));
         System.out.println(resourceBundleEnglishUK.getString("ride") + " " + resourceBundleEnglishUK.getString("train"));
 
+        // ATTENTION, KEY NOT DEFINED
+        // Can't find resource for bundle java.util.PropertyResourceBundle, key ridee
+        System.out.println(resourceBundleEnglishUK.getString("xxxxx"));
+
         System.out.println("\n=====================\n");
+    }
+
+    private static void useInMemoryProperties() {
+        Map<String, String> someMap = new TreeMap<>();
+        someMap.put("3000", "Bern");
+        someMap.put("4000", "Basel");
+        someMap.put("8000", "Zurich");
+
+        Properties properties = new Properties();
+        properties.putAll(someMap);
+
+        Object obj = properties.get("3000");
+        System.out.println((String) obj);
+
+        Object objNotDefined = properties.get("9999");
+        System.out.println(objNotDefined);
+
+        String secondCity = properties.getProperty("4000");
+        System.out.println(secondCity);
+
+        String cityNotDefined = properties.getProperty("9999");
+        System.out.println(cityNotDefined);
     }
 }
