@@ -15,7 +15,8 @@ import java.util.Locale;
 
 public final class DateTime {
 
-    private DateTime() {}
+    private DateTime() {
+    }
 
     public static void main(String[] args) {
         LocalDateTime nowDateTimeOne = LocalDateTime.now();
@@ -31,26 +32,25 @@ public final class DateTime {
 
         System.out.println("\n ======================= \n");
 
-
         // Duration: A period of minutes or hours
 
         LocalTime start = LocalTime.of(10, 0, 0);
-        LocalTime end = LocalTime.of(10, 29,59);
+        LocalTime end = LocalTime.of(10, 29, 59);
 
         System.out.println("Coffee breakt starts at " + start + " and ends late at " + end);
         long numberOfMinutes = ChronoUnit.MINUTES.between(start, end);
         System.out.println("end - start is " + numberOfMinutes);
+        long numberOfSecondes = ChronoUnit.SECONDS.between(start, end);
+        System.out.println("end - start is " + numberOfSecondes);
 
         Duration duration = Duration.ofMinutes(numberOfMinutes);
         System.out.println(duration); // PT stands for period of time
 
         System.out.println("\n ======================= \n");
 
-
+        ZonedDateTime nowZonedDateTime = ZonedDateTime.now();
         // Instant: represents an instant in time
         // It's like a timestamp in seconds starting at 01.01.1970
-
-        ZonedDateTime nowZonedDateTime = ZonedDateTime.now();
         Instant instant = nowZonedDateTime.toInstant();
         System.out.println("The instant of now is: " + instant);
 
@@ -78,18 +78,17 @@ public final class DateTime {
         System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm")));
         System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")));
         System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("hh:mm yyyy/MM/dd")));
+        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("hh.mmyyyyMM::dd")));
+//        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofPattern("Holidays in: hh:mm yyyy/MM/dd")));
 
         System.out.println("\n ======================= \n");
 
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.UK)));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.UK)));
-        System.out.println(nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(Locale.UK)));
-
-
-
-
-
-
+        System.out.println(nowZonedDateTime
+                .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.UK)));
+        System.out.println(nowZonedDateTime
+                .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.UK)));
+        System.out.println(
+                nowZonedDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(Locale.UK)));
     }
 
 }
