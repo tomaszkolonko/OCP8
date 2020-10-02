@@ -47,7 +47,7 @@ public class Runner {
 
         // ATTENTION, KEY NOT DEFINED
         // Can't find resource for bundle java.util.PropertyResourceBundle, key ridee
-        System.out.println(resourceBundleEnglishUK.getString("xxxxx"));
+//        System.out.println(resourceBundleEnglishUK.getString("xxxxx"));
 
         System.out.println("\n=====================\n");
     }
