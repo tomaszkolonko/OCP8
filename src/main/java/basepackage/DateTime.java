@@ -21,11 +21,10 @@ public final class DateTime {
         LocalDateTime nowDateTimeTwo = LocalDateTime.of(nowDate, nowTime);
         LocalDate nowDateTwo = LocalDate.of(2020, 12, 12);
         LocalDateTime nowDateTimeFour = LocalDateTime.of(2020, 12, 12, 9, 30, 23, 159);
+//        LocalDateTime wontWork = LocalDateTime.of(nowDate, 9, 30, 23, 159);
         LocalDate nowDateThree = LocalDate.parse("2020-12-12");
-//        // Text '2020-1-12' could not be parsed at index 5
 //        LocalDate wrongFormateDate = LocalDate.parse("2020-1-12");
         LocalTime nowTimeTwo = LocalTime.parse("09:12:15");
-//        // Text '9:12:15' could not be parsed at index 0
 //        LocalTime wrongFormatTime = LocalTime.parse("9:12:15");
         LocalDateTime nowDateTimeFive = LocalDateTime.parse("2020-12-12T09:12:15");
         LocalDateTime nowDateTimeFivee = LocalDateTime.parse("2020-12-12T09:12:15.342");
