@@ -12,9 +12,9 @@ public final class DateTime {
     public static void main(String[] args) {
         LocalDateTime nowDateTimeOne = LocalDateTime.now();
 
-        System.out.println("NOW: \t\t\t\t" + nowDateTimeOne);
+        System.out.println("NOW: \t\t\t\t\t\t\t" + nowDateTimeOne);
         LocalDateTime followingThursdayDateTime = nowDateTimeOne.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-        System.out.println("NEXT: \t\t\t\t" + followingThursdayDateTime + " -> " + followingThursdayDateTime.getDayOfWeek());
+        System.out.println("NEXT: \t\t\t\t\t\t" + followingThursdayDateTime + " -> " + followingThursdayDateTime.getDayOfWeek());
         LocalDateTime firstDayOfCurrentMonth = nowDateTimeOne.with(TemporalAdjusters.firstDayOfMonth());
         System.out.println("First of Month: \t" + firstDayOfCurrentMonth + " -> " + firstDayOfCurrentMonth.getDayOfWeek());
 
