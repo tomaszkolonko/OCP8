@@ -42,8 +42,12 @@ public final class DateTime {
             System.out.println("Exception caught");
         }
 
+        System.out.println("\n===========================\n");
+
         // use the properties
         System.out.println(ownProperties.getProperty("greetingOne"));
+        System.out.println(ownProperties.getProperty("greetingTwo"));
+        System.out.println(ownProperties.getProperty("greetingThree"));
 
         ownProperties.setProperty("test", "test");
         ownProperties.list(System.out);
