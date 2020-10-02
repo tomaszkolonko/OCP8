@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +13,7 @@ public class Formatting {
         // This will show 02 for two o'clock in the afternoon with PM added to the time
         // That's because of the small letter hh for hours
         System.out.println("Formatted DateTime (yyyy-MM-dd hh:mm:ss a): " + now.format(formatterOne));
+        System.out.println("Formatted DateTime (yyyy-MM-dd hh:mm:ss a): " + formatterOne.format(now));
 
         // This one results in a 12-hour format without AM/PM at the end
         System.out.println("Formatted DateTime (yyyy-MM-dd hh:mm:ss): " + now.format(formatterTwo));
@@ -25,8 +25,11 @@ public class Formatting {
         // 24-hour format without AM/PM at the end
         System.out.println("Formatted DateTime (yyyy-MM-dd HH:mm:ss): " + now.format(formatterFour));
 
+        // 24-hour format with AM/PM at the end ???
+        System.out.println("Formatted DateTime (yyyy-MM-dd HH:mm:ss a): " + now.format(formatterFour));
+
         // This format requires a ZonedDateTime not a DateTime to work properly. It will lead
         // to a runtime exception since the compiler cannot catch that one.
-        // System.out.println("Formatted DateTime (yyyy-MM-dd HH:mm:ss Z): " + now.format(formatterFive));
+//        System.out.println("Formatted DateTime (yyyy-MM-dd HH:mm:ss Z): " + now.format(formatterFive));
     }
 }
