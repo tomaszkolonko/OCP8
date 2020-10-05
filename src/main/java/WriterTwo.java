@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +14,7 @@ public class WriterTwo {
             File file = new File("fileWriter.txt");
             writeSomething(file);
             readSomething(file);
+            deleteFile(file);
         } catch (IOException e) {
             System.out.println("huhu");
         }
@@ -39,7 +42,10 @@ public class WriterTwo {
         }
 
         bufferedReader.close();
+    }
 
+    private static void deleteFile(File file) throws IOException {
+        file.delete();
     }
 
 }

@@ -18,13 +18,16 @@ public class FilesAndDirectories {
         fileToBeDeleted.delete();
         System.out.println("directoryToBeDeleted is deleted: " + directoryToBeDeleted.delete());
 
-        // TODO: The following 4 lines of code don't work as expected
         File newFileName = new File("newFileName.txt");
         fileToBeDeletedSecond.renameTo(newFileName);
 
         File newDirectoryName = new File("newDirectoryName");
         directoryToBeDeleted.renameTo(newDirectoryName);
 
+        // Clean up
+        newFileName.delete();
+        newDirectoryName.delete();
+        fileToBeDeletedSecond.delete();
+        directoryToBeDeleted.delete();
     }
-
 }

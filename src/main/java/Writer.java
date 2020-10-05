@@ -9,6 +9,7 @@ public class Writer {
             File file = new File("fileWriter.txt");
             writeSomething(file);
             readSomething(file);
+            deleteFile(file);
 
         } catch (IOException e) {
             System.out.println("huhu");
@@ -32,6 +33,10 @@ public class Writer {
             System.out.print(c);
         }
         fileReader.close();
+    }
+
+    private static void deleteFile(File file) throws IOException {
+        file.delete();
     }
 
 }
