@@ -50,6 +50,8 @@ public class Runner {
         System.out.println("hashCode of Steffanie: " + steffanie.hashCode());
         System.out.println("hashCode of second Steffanie: " + steffanieToBeSearched.hashCode());
         System.out.println("\n ---------------------------- \n");
+
+        // ATTENTION -> equals() returns true but hashcode returns different values ?!?!?
     }
 
     private void anotherHashCodeExample() {

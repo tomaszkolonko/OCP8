@@ -62,9 +62,9 @@ public class Person {
         // if (o instanceof Person) return false;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return firstName.equals(person.firstName) &&
-                lastName.equals(person.lastName) &&
-                age == person.age;
+        return this.firstName.equals(person.firstName) &&
+                this.lastName.equals(person.lastName) &&
+                this.age == person.age;
     }
 
     @Override
