@@ -23,7 +23,6 @@ public class TheSortingStuff {
         runner.sortListByDefaultAndPrint();
         runner.sortListByPhoneAndPrint();
         runner.sortListByRegionAndPrint();
-
     }
 
     private void printArray() {
@@ -77,8 +76,11 @@ public class TheSortingStuff {
         Person p4 = new Person("Moritz", "Vielle", "Biel", "0796755223");
         Person p5 = new Person("Max", "Goethe", "Zürich", "0787777448");
 
+        // populate the Array of persons
         personArray = new Person[] {p1, p2, p3, p4, p5};
-        personList = new ArrayList<Person>();
+
+        // populate the ArrayList of persons
+        personList = new ArrayList<>();
         personList.add(p1);
         personList.add(p2);
         personList.add(p3);
