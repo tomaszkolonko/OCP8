@@ -5,8 +5,8 @@ public class Runner {
     public static void main(String[] args) {
         Runner runner = new Runner();
         runner.preJava5();
-        runner.withJava8();
-        runner.ifYouReallyHaveTo();
+        runner.withJava7();
+        runner.similarToPreJava5WithGenerics();
     }
 
     private void preJava5() {
@@ -34,7 +34,8 @@ public class Runner {
         }
     }
 
-    private void withJava8() {
+    private void withJava7() {
+        // diamond syntax introduced with Java 7
         List<String> myList = new ArrayList<>();
         myList.add("SBB");
         myList.add("BLS");
@@ -50,7 +51,7 @@ public class Runner {
         }
     }
 
-    private void ifYouReallyHaveTo() {
+    private void similarToPreJava5WithGenerics() {
         List<Object> myFirstList = new ArrayList<Object>();
         // or with Java 7 diamond syntax
         List<Object> mySecondList = new ArrayList<>();
