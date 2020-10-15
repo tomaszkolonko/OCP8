@@ -33,6 +33,7 @@ public class RunnerComplex {
     }
 
     private void addToAnimalList(List<? extends Animal> animals) {
+        // See how the compiler catches that issue
 //        animals.add(new Animal("Animal"));
 //        animals.add(new Dog(123));
         System.out.println("Adding with this construct of \"List<? extends Animal> animals\" is not possilbe");
