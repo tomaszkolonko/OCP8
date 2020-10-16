@@ -17,7 +17,7 @@ public class GenericShelf<T> {
 
     public void printContent() {
         for(T t : pool) {
-            System.out.println(t);
+            System.out.println(" - " + t);
         }
     }
 
