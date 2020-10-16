@@ -25,7 +25,7 @@ public class Runner {
             // returns the highest-priority element and removes it
             System.out.print(priorityQueue.poll() + " ");
         }
-        System.out.println(priorityQueue.size() + "");
+        System.out.println("\nPriorityQueue size: " + priorityQueue.size());
         System.out.println("\n=====================\n");
     }
 
