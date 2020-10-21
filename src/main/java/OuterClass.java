@@ -9,6 +9,11 @@ public class OuterClass {
         // InnerClass innerClass = new InnerClass();
         OuterClass outerClass = new OuterClass();
         outerClass.doMagic();
+
+        System.out.println("\n\n==================================\n\n");
+
+        InnerClass innerClass2 = new OuterClass().new InnerClass();
+        innerClass2.treason();
     }
 
     public void doMagic() {
@@ -19,6 +24,10 @@ public class OuterClass {
         // through an instance of the enclosing class.
         // System.out.println("Accessing inner wisdom from outer space: " + innerWisdomNumber);
         System.out.println("Accessing inner wisdom from outer space: " + innerClass.innerWisdomNumber);
+    }
+
+    private void hiddenNews() {
+        System.out.println("outerNews: check 20min for more information");
     }
 
 
@@ -34,8 +43,15 @@ public class OuterClass {
             System.out.println("Accessing outer wisdom number: " + outerWisdomNumber);
         }
 
-        private void hiddenMethod() {
-            System.out.println("Hello from the hidden inner method");
+        private void hiddenNews() {
+            System.out.println("innerNews: Elon Musk just arrived at moonstation.");
+        }
+
+        private void treason() {
+            SomeOtherClass someOtherClass = new SomeOtherClass();
+            someOtherClass.printOuterClassReference(OuterClass.this);
+
+            someOtherClass.printInnerClassReference(this);
         }
     }
 }

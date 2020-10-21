@@ -8,7 +8,13 @@ public class SomeOtherClass {
 
         OuterClass outerClass = new OuterClass();
         outerClass.doMagic();
+    }
 
-        OuterClass outerClassReference = 
+    public void printOuterClassReference(OuterClass outerClassReference) {
+        System.out.println("outerClassRefernce: " + outerClassReference);
+    }
+
+    public void printInnerClassReference(OuterClass.InnerClass innerClassReference) {
+        System.out.println("innerClassReference: " + innerClassReference);
     }
 }
