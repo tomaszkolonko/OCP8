@@ -4,10 +4,12 @@ public class SomeOtherClass {
         innerClass.printInnerWisdom();
         innerClass.printOuterWisdom();
 
-        // innerClass.hiddenMethod();
+//        innerClass.hiddenNews();
 
         OuterClass outerClass = new OuterClass();
         outerClass.doMagic();
+
+//        outerClass.hiddenNews();
     }
 
     public void printOuterClassReference(OuterClass outerClassReference) {
