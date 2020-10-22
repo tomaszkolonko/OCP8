@@ -8,7 +8,6 @@ public class MyMoleskin {
 
         TodoList todoList = new TodoList();
         List<String> list = new ArrayList<>();
-        list.
         todoList.addItem(new Countable() {
             @Override
             public int getCurrentCount() {
