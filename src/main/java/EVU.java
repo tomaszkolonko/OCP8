@@ -11,3 +11,5 @@ public enum EVU {
         return debitCode;
     }
 }
+
+// Enums cannot be extended by other Enums !!!
