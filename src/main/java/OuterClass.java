@@ -22,7 +22,7 @@ public class OuterClass {
 
         // The enclosing class can access the (private) members from the inner class ONLY
         // through an instance of the enclosing class.
-        // System.out.println("Accessing inner wisdom from outer space: " + innerWisdomNumber);
+//        System.out.println("Accessing inner wisdom from outer space: " + innerWisdomNumber);
         System.out.println("Accessing inner wisdom from outer space: " + innerClass.innerWisdomNumber);
     }
 
@@ -48,10 +48,10 @@ public class OuterClass {
         }
 
         private void treason() {
-            SomeOtherClass someOtherClass = new SomeOtherClass();
-            someOtherClass.printOuterClassReference(OuterClass.this);
+            KlingonSpy spy = new KlingonSpy();
+            spy.printOuterClassReference(OuterClass.this);
 
-            someOtherClass.printInnerClassReference(this);
+            spy.printInnerClassReference(this);
         }
     }
 }
