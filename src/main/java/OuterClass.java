@@ -7,6 +7,7 @@ public class OuterClass {
 
     void doSomething() {
         final Dog dog = new Dog("Puppy");
+        int number = 42;
         class InnerClass {
             String innerClassString = "innerClass String";
 
@@ -17,13 +18,22 @@ public class OuterClass {
                 // dog = new Dog("Max");
                 preserveLocalObject(dog);
             }
-        }
 
+            // Try out passing in another number
+            // which one will be taken??
+            public void printNumber(int number) {
+                System.out.println(number);
+            }
+        }
+        // Move this line in front of the class.
         InnerClass innerClass = new InnerClass();
+
         innerClass.seeOuterClassString();
         System.out.println(innerClass.innerClassString);
 
         System.out.println("\t" + passedObject);
+
+        innerClass.printNumber(number);
     }
 
     void preserveLocalObject(Dog dog) {
