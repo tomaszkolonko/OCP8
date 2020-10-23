@@ -11,6 +11,11 @@ public class Runner {
         StatisticalModel.Counter counter = new StatisticalModel.Counter();
         counter.getCountInformation();
 
+        System.out.println("\n===================\n");
+
+        statisticalModel.printTruth();
+        // Cannot resolve method 'printTruth' in 'Counter'
+//        counter.printTruth();
     }
 
 }
