@@ -2,12 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyMoleskin {
+    List<TodoList> myLists = new ArrayList<>();
 
     public static void main(String[] args)  {
         MyMoleskin myMoleskin = new MyMoleskin();
 
         TodoList todoList = new TodoList();
-        List<String> list = new ArrayList<>();
+
+        SomeOtherClass someOtherClass = new SomeOtherClass();
+        todoList.addItem(someOtherClass);
+
+        System.out.println("\n================\n");
+
         todoList.addItem(new Countable() {
             @Override
             public int getCurrentCount() {
@@ -19,11 +25,8 @@ public class MyMoleskin {
                 System.out.println("Thanks for adding an item");
             }
         });
-
-        System.out.println("\n================\n");
-
-        SomeOtherClass someOtherClass = new SomeOtherClass();
-        todoList.addItem(someOtherClass);
+        
+        myMoleskin.myLists.add(todoList);
     }
 }
 
@@ -31,7 +34,7 @@ public class MyMoleskin {
 class TodoList {
     void addItem(Countable c) {
         c.addItem();
-        c.getCurrentCount();
+        System.out.println("Print some count: " + c.getCurrentCount());
     }
 }
 
