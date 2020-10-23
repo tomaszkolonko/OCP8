@@ -25,7 +25,7 @@ public class MyMoleskin {
                 System.out.println("Thanks for adding an item");
             }
         });
-        
+
         myMoleskin.myLists.add(todoList);
     }
 }
