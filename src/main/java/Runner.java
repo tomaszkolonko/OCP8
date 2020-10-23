@@ -4,11 +4,12 @@ public class Runner {
 
     public static void main(String[] args) {
         PetShop petShop = new PetShop();
-        petShop.cat.getName();
+        System.out.println(petShop.cat.getName());
         petShop.cat.testMe();
 
         System.out.println("\n\n===============================\n\n");
 
+//        petShop.cat.printSecretTrick();
         petShop.classMethod();
     }
 
