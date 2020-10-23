@@ -6,7 +6,7 @@ public class OuterClass {
     private InnerClass innerClass;
 
     void doSomething() {
-        final Dog dog = new Dog("Puppy");
+        Dog dog = new Dog("Puppy");
         int number = 42;
         class InnerClass {
             String innerClassString = "innerClass String";
@@ -15,7 +15,7 @@ public class OuterClass {
                 System.out.println("outerClassString: " + outerClassString);
                 System.out.println("innerClassString: " + innerClassString);
                 System.out.println("\t" + dog);
-                // dog = new Dog("Max");
+//                dog = new Dog("Max");
                 preserveLocalObject(dog);
             }
 
@@ -25,8 +25,8 @@ public class OuterClass {
                 System.out.println(number);
             }
         }
-        // Move this line in front of the class.
         InnerClass innerClass = new InnerClass();
+        // Move this line in front of the class.
 
         innerClass.seeOuterClassString();
         System.out.println(innerClass.innerClassString);
