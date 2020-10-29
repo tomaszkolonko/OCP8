@@ -1,11 +1,18 @@
+import java.util.function.Predicate;
+
 public class Company {
     private String companyName;
-    private HubChecker hubChecker;
+    private Predicate<Laptop> predicate;
     private FortuneTeller fortuneTeller;
 
-    public Company(String companyName, HubChecker hubChecker) {
+//    public Company(String companyName, HubChecker hubChecker) {
+//        this.companyName = companyName;
+//        this.hubChecker = hubChecker;
+//    }
+
+    public Company(String companyName) {
         this.companyName = companyName;
-        this.hubChecker = hubChecker;
+        this.predicate = this.predicate;
     }
 
     public String getCompanyName() {
@@ -16,25 +23,12 @@ public class Company {
         this.companyName = companyName;
     }
 
-    public HubChecker getHubChecker() {
-        return hubChecker;
-    }
-
-    public void setHubChecker(HubChecker hubChecker) {
-        this.hubChecker = hubChecker;
-    }
-
     public FortuneTeller getFortuneTeller() {
         return fortuneTeller;
     }
 
     public void setFortuneTeller(FortuneTeller fortuneTeller) {
         this.fortuneTeller = fortuneTeller;
-    }
-
-    // Returns true if laptop has not enough ports available
-    public boolean checkIfLaptopNeedsHub(Laptop laptop) {
-        return hubChecker.checkIfHubNeeded(laptop);
     }
 
     public String willItEvenWork() {

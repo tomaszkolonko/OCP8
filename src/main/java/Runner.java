@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.function.Predicate;
 
 public class Runner {
 
@@ -8,15 +9,19 @@ public class Runner {
         Laptop lenovo = new Laptop("Lenovo X1", 4);
         Laptop macBook = new Laptop("MacBook Pro", 3);
 
-        Company company = new Company("SBB", d -> d.getNumberOfPorts() < 4);
-        System.out.println("SBB needs additional Hub for Lenovo: " + company.checkIfLaptopNeedsHub(lenovo));
-        System.out.println("SBB needs additional Hub for MacBook: " + company.checkIfLaptopNeedsHub(macBook));
+        Predicate<Laptop> predicateSBB = d -> d.getNumberOfPorts() < 4;
+        Company company = new Company("SBB");
+//        Company company = new Company("SBB", d -> d.getNumberOfPorts() < 4);
+        System.out.println("SBB needs additional Hub for Lenovo: " + predicateSBB.test(lenovo));
+        System.out.println("SBB needs additional Hub for MacBook: " + predicateSBB.test(macBook));
 
         System.out.println("\n===========================\n");
 
-        Company companyOther = new Company("BLS", d -> d.getNumberOfPorts() < 5);
-        System.out.println("BLS needs additional Hub for Lenovo: " + companyOther.checkIfLaptopNeedsHub(lenovo));
-        System.out.println("BLS needs additional Hub for MacBook: " + companyOther.checkIfLaptopNeedsHub(macBook));
+        Predicate<Laptop> predicateBLS = d -> d.getNumberOfPorts() < 5;
+        Company companyOther = new Company("SBB");
+//        Company companyOther = new Company("BLS", d -> d.getNumberOfPorts() < 5);
+        System.out.println("BLS needs additional Hub for Lenovo: " + predicateBLS.test(lenovo));
+        System.out.println("BLS needs additional Hub for MacBook: " + predicateBLS.test(macBook));
 
         System.out.println("\n===========================\n");
 
