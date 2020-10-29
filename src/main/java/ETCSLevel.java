@@ -1,0 +1,1 @@
+public enum ETCSLevel { ETCS_LEVEL_0, ETCS_LEVEL_1, ETCS_LEVEL_2, ETCS_LEVEL_3 }
