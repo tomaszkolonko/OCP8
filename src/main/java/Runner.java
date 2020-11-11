@@ -4,6 +4,7 @@ public class Runner {
     private static char[] characterBillboard = new char[200];
 
     public static void main(String[] args) {
+//        Runner runner = new Runner();
 
         Runnable runnableOne = () -> {
             String message = "Aldi han nun neue vegane Schnitzel im Sortiment. Nur 99 Franken pro Kilo!!! Aldi han nun neue vegane Schnitzel im Sortiment. Nur 99 Franken pro Kilo!!!";
@@ -29,6 +30,8 @@ public class Runner {
         tThree.setName("Thread-Three");
         tThree.start();
 
+//        runner.mixUpTheBillboard("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasd");
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -52,5 +55,20 @@ public class Runner {
 
         }
     }
+
+//    private synchronized void mixUpTheBillboard(String message) {
+//        for(int runs = 0; runs < 100; runs++) {
+//            for (int x = 0; x < message.length(); x++) {
+//                characterBillboard[x] = message.charAt(x);
+//            }
+//            for(int x = 0; x < message.length(); x++) {
+//                if(characterBillboard[x] != message.charAt(x)) {
+//                    System.out.println(characterBillboard);
+//                    break;
+//                }
+//            }
+//
+//        }
+//    }
 
 }
