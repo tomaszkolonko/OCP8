@@ -50,7 +50,7 @@ public class Runner {
 
 
         endTime = System.currentTimeMillis();
-        System.out.println("Fetching all information in parallel took: " + ((endTime - startTime) / 1000) + " seconds");
+        System.out.println("Fetching (really??) all information in parallel took: " + ((endTime - startTime) / 1000) + " seconds");
 
 
         System.out.println("\n\n===============================\n\n");
