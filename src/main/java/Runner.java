@@ -7,18 +7,21 @@ public class Runner {
         thread.start();
 
 
-//        Thread.sleep(1000);
+//        Thread.sleep(1_000);
 
-        System.out.println("Total of computation is: " + thread.total);
 
         synchronized (thread) {
             try {
                 System.out.println("Waiting for the thread to complete...");
-                thread.wait();
+                thread.wait(1000);
+                System.out.println("Thread has completed");
             } catch (InterruptedException e) {
-                System.out.println("Total is: " + thread.total);
+                System.out.println("The wait() method got interrupted ;( ");
             }
         }
+
+        System.out.println("Total of computation is: " + thread.total);
+
     }
 
 }
