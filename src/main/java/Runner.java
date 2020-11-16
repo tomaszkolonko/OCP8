@@ -1,27 +1,41 @@
-
-
 public class Runner {
-
-    public static void main(String[] args) throws InterruptedException {
-        ThreadB thread = new ThreadB();
-        thread.start();
-
-
-//        Thread.sleep(1_000);
+    public static void main(String[] args) {
+        CounterWrong counterWrong = new CounterWrong();
+        createAndRunThreads(counterWrong);
 
 
-        synchronized (thread) {
-            try {
-                System.out.println("Waiting for the thread to complete...");
-                thread.wait(1000);
-                System.out.println("Thread has completed");
-            } catch (InterruptedException e) {
-                System.out.println("The wait() method got interrupted ;( ");
-            }
+        System.out.println("\n\n====================\n\n");
+
+
+        CounterInefficient counterInefficient = new CounterInefficient();
+        createAndRunThreads(counterInefficient);
+
+        
+        System.out.println("\n\n====================\n\n");
+
+
+        CounterRight counterRight = new CounterRight();
+        createAndRunThreads(counterRight);
+    }
+
+    private static void createAndRunThreads(Counter counter) {
+        IncrementThread t1 = new IncrementThread(counter);
+        IncrementThread t2 = new IncrementThread(counter);
+
+        long startTime = System.currentTimeMillis();
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        System.out.println("Total of computation is: " + thread.total);
-
+        long endTime = System.currentTimeMillis();
+        System.out.println(counter.getCount() + " in " + (endTime-startTime) + " milliseconds");
     }
 
 }
