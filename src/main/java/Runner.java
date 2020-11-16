@@ -1,7 +1,8 @@
-
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Runner {
     private static char[] characterBillboard = new char[200];
+    private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     public static void main(String[] args) {
 //        Runner runner = new Runner();
@@ -22,7 +23,14 @@ public class Runner {
         Thread tOne = new Thread(runnableOne);
         Thread tTwo = new Thread(runnableTwo);
         Thread tThree = new Thread(runnableThree);
+        Thread readerThread = new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
+                readBillboard();
 
+            }
+        });
+
+        readerThread.start();
         tOne.setName("Thread-One");
         tOne.start();
         tTwo.setName("Thread-Two");
@@ -30,7 +38,6 @@ public class Runner {
         tThree.setName("Thread-Three");
         tThree.start();
 
-//        runner.mixUpTheBillboard("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasd");
 
         try {
             Thread.sleep(1000);
@@ -41,34 +48,28 @@ public class Runner {
         System.out.println(characterBillboard);
     }
 
-    private synchronized static void changeBillboard(String message) {
-        for(int runs = 0; runs < 100; runs++) {
-            for (int x = 0; x < message.length(); x++) {
-                characterBillboard[x] = message.charAt(x);
-            }
-            for(int x = 0; x < message.length(); x++) {
-                if(characterBillboard[x] != message.charAt(x)) {
-                    System.out.println(characterBillboard);
-                    break;
+    private static void changeBillboard(String message) {
+        readWriteLock.writeLock().lock();
+        System.out.println(Thread.currentThread().getName());
+        try {
+            for (int runs = 0; runs < 100; runs++) {
+                for (int x = 0; x < message.length(); x++) {
+                    characterBillboard[x] = message.charAt(x);
                 }
             }
-
+        } finally {
+            readWriteLock.writeLock().unlock();
         }
     }
 
-//    private synchronized void mixUpTheBillboard(String message) {
-//        for(int runs = 0; runs < 100; runs++) {
-//            for (int x = 0; x < message.length(); x++) {
-//                characterBillboard[x] = message.charAt(x);
-//            }
-//            for(int x = 0; x < message.length(); x++) {
-//                if(characterBillboard[x] != message.charAt(x)) {
-//                    System.out.println(characterBillboard);
-//                    break;
-//                }
-//            }
-//
-//        }
-//    }
+    private static void readBillboard() {
+        readWriteLock.readLock().lock();
+        try {
+            System.out.println(characterBillboard);
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+
+    }
 
 }
