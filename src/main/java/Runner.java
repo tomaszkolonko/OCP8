@@ -20,15 +20,10 @@ public class Runner {
             System.out.println("Something went wrong...");
         }
 
-        InfinityRunnable infinityRunnable = new InfinityRunnable();
-        Thread t1 = new Thread(infinityRunnable);
-        Thread t2 = new Thread(infinityRunnable);
-        Thread t3 = new Thread(infinityRunnable);
-        Thread t4 = new Thread(infinityRunnable);
-        executorService.submit(t1);
-        executorService.submit(t2);
-        executorService.submit(t3);
-        executorService.submit(t4);
+        InfinityCallable infinityCallable = new InfinityCallable();
+
+        executorService.submit(infinityCallable);
+        executorService.submit(infinityCallable);
 
         // Don't except any new tasks but finish the running ones
         executorService.shutdown();
@@ -42,22 +37,6 @@ public class Runner {
             if(!executorService.isTerminated()) {
                 List<Runnable> unfinished = executorService.shutdownNow();
                 System.out.println(unfinished);
-                if(!t1.isInterrupted()) {
-                    System.out.println("t1 still working therefore shut it down");
-                    t1.interrupt();
-                }
-                if(!t2.isInterrupted()) {
-                    System.out.println("t2 still working therefore shut it down");
-                    t2.interrupt();
-                }
-                if(!t3.isInterrupted()) {
-                    System.out.println("t3 still working therefore shut it down");
-                    t3.interrupt();
-                }
-                if(!t4.isInterrupted()) {
-                    System.out.println("t4 still working therefore shut it down");
-                    t4.interrupt();
-                }
             }
         }
 
