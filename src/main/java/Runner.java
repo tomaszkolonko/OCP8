@@ -5,16 +5,17 @@ public class Runner {
         int[] data = new int[10_000_000];
         printSomeElements(data);
 
-        long start = System.currentTimeMillis();
-
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         RandomInitRecursiveAction action = new RandomInitRecursiveAction(data, 0, data.length);
         forkJoinPool.invoke(action);
 
-        long end = System.currentTimeMillis();
-        System.out.println("time in milliseconds: " + (end-start));
-
         printSomeElements(data);
+
+        // New Code
+
+        FindMaxPositionRecursiveTask task = new FindMaxPositionRecursiveTask(data, 0, data.length);
+        Integer position = forkJoinPool.invoke(task);
+        System.out.println("Position: " + position + ", value: " + data[position]);
     }
 
     public static void printSomeElements(int[] data) {
