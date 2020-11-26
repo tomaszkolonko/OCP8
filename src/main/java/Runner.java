@@ -66,7 +66,7 @@ public class Runner {
                     + "('599-128', 'How to invest in stocks', 23),"
                     + "('443-223', 'Fermenting Sauerkraut made easy', 31)";
             statement.execute(insertBooks);
-            System.out.println("Successfully populated the 'books' table");
+            System.out.println("Successfully populated the 'books' table: ");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
