@@ -1,8 +1,8 @@
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Runner {
 
@@ -20,31 +20,15 @@ public class Runner {
         try {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected successfully\n");
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
 
-            DatabaseMetaData databaseMetaData = connection.getMetaData();
-            if (databaseMetaData.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
-                System.out.print("Supports TYPE_FORWARD_ONLY");
-                if (databaseMetaData.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY,
-                        ResultSet.CONCUR_UPDATABLE)) {
-                    System.out.println(" and supports CONCUR_UPDATABLE");
-                }
-            }
+            absoluteExample(statement);
+            System.out.println("\n\n========================\n");
+            relativeExample(statement);
+            System.out.println("\n\n========================\n");
+            someExtraMethods(statement);
 
-            if (databaseMetaData.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE)) {
-                System.out.print("Supports TYPE_SCROLL_INSENSITIVE");
-                if (databaseMetaData.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_UPDATABLE)) {
-                    System.out.println(" and supports CONCUR_UPDATABLE");
-                }
-            }
-
-            if (databaseMetaData.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE)) {
-                System.out.print("Supports TYPE_SCROLL_SENSITIVE");
-                if (databaseMetaData.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE,
-                        ResultSet.CONCUR_UPDATABLE)) {
-                    System.out.println(" and supports CONCUR_UPDATABLE");
-                }
-            }
 
         } catch (SQLException e) {
             System.out.println("SQL Connection failed");
@@ -59,4 +43,65 @@ public class Runner {
         }
     }
 
+    public static void absoluteExample(Statement statement) throws SQLException {
+        String query = "SELECT * FROM books";
+        ResultSet resultSet = statement.executeQuery(query);
+        int rowCount = 0;
+        if(resultSet.last()) {
+            rowCount = resultSet.getRow();
+        }
+
+
+        for(int i = 1; i <= rowCount; i += 2) {
+            if(resultSet.absolute(i)) {
+                System.out.print("ID: " + resultSet.getString("id") + "   ");
+                System.out.print("ISBN: " + resultSet.getString("isbn") + "   ");
+                System.out.println("TITLE: " + resultSet.getString("title"));
+            }
+        }
+
+        System.out.println("\n-----------------\n");
+
+        resultSet.absolute(-1);
+        System.out.print("ID: " + resultSet.getString("id") + "   ");
+
+        resultSet.absolute(-2);
+        System.out.print("ID: " + resultSet.getString("id") + "   ");
+
+        resultSet.absolute(-3);
+        System.out.print("ID: " + resultSet.getString("id") + "   ");
+
+        resultSet.absolute(0);
+//        System.out.print("ID: " + resultSet.getString("id") + "   ");
+    }
+
+    public static void relativeExample(Statement statement) throws SQLException {
+        String query = "SELECT * FROM books";
+        ResultSet resultSet = statement.executeQuery(query);
+
+        resultSet.absolute(4);
+        System.out.println("ID: " + resultSet.getString("id") + "   ");
+        resultSet.relative(2);
+        System.out.println("ID: " + resultSet.getString("id") + "   ");
+        resultSet.relative(-4);
+        System.out.println("ID: " + resultSet.getString("id") + "   ");
+    }
+
+    public static void someExtraMethods(Statement statement) throws SQLException {
+        String query = "SELECT * FROM books";
+        ResultSet resultSet = statement.executeQuery(query);
+        resultSet.afterLast();
+//        System.out.println("ID: " + resultSet.getString("id") + "   ");
+        while(resultSet.previous()) {
+            System.out.print("ID: " + resultSet.getString("id") + "   ");
+            System.out.print("ISBN: " + resultSet.getString("isbn") + "   ");
+            System.out.println("TITLE: " + resultSet.getString("title"));
+        }
+
+        System.out.println("Has the cursor reache the first element? " + resultSet.isFirst());
+        System.out.println("Get row number " + resultSet.getRow());
+        resultSet.first();
+        System.out.println("Has the cursor reache the first element? " + resultSet.isFirst());
+
+    }
 }
