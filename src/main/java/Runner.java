@@ -23,11 +23,11 @@ public class Runner {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
-            absoluteExample(statement);
-            System.out.println("\n\n========================\n");
-            relativeExample(statement);
-            System.out.println("\n\n========================\n");
-            someExtraMethods(statement);
+            printTableContent(statement);
+            System.out.println("\n========================\n");
+            changeTitleToUppercase(statement);
+            System.out.println("\n========================\n");
+            printTableContent(statement);
 
 
         } catch (SQLException e) {
@@ -43,65 +43,32 @@ public class Runner {
         }
     }
 
-    public static void absoluteExample(Statement statement) throws SQLException {
-        String query = "SELECT * FROM books";
-        ResultSet resultSet = statement.executeQuery(query);
-        int rowCount = 0;
-        if(resultSet.last()) {
-            rowCount = resultSet.getRow();
-        }
-
-
-        for(int i = 1; i <= rowCount; i += 2) {
-            if(resultSet.absolute(i)) {
-                System.out.print("ID: " + resultSet.getString("id") + "   ");
-                System.out.print("ISBN: " + resultSet.getString("isbn") + "   ");
-                System.out.println("TITLE: " + resultSet.getString("title"));
-            }
-        }
-
-        System.out.println("\n-----------------\n");
-
-        resultSet.absolute(-1);
-        System.out.print("ID: " + resultSet.getString("id") + "   ");
-
-        resultSet.absolute(-2);
-        System.out.print("ID: " + resultSet.getString("id") + "   ");
-
-        resultSet.absolute(-3);
-        System.out.print("ID: " + resultSet.getString("id") + "   ");
-
-        resultSet.absolute(0);
-//        System.out.print("ID: " + resultSet.getString("id") + "   ");
-    }
-
-    public static void relativeExample(Statement statement) throws SQLException {
+    public static void printTableContent(Statement statement) throws SQLException {
         String query = "SELECT * FROM books";
         ResultSet resultSet = statement.executeQuery(query);
 
-        resultSet.absolute(4);
-        System.out.println("ID: " + resultSet.getString("id") + "   ");
-        resultSet.relative(2);
-        System.out.println("ID: " + resultSet.getString("id") + "   ");
-        resultSet.relative(-4);
-        System.out.println("ID: " + resultSet.getString("id") + "   ");
-    }
-
-    public static void someExtraMethods(Statement statement) throws SQLException {
-        String query = "SELECT * FROM books";
-        ResultSet resultSet = statement.executeQuery(query);
-        resultSet.afterLast();
-//        System.out.println("ID: " + resultSet.getString("id") + "   ");
-        while(resultSet.previous()) {
+        while (resultSet.next()) {
             System.out.print("ID: " + resultSet.getString("id") + "   ");
             System.out.print("ISBN: " + resultSet.getString("isbn") + "   ");
             System.out.println("TITLE: " + resultSet.getString("title"));
         }
+    }
 
-        System.out.println("Has the cursor reache the first element? " + resultSet.isFirst());
-        System.out.println("Get row number " + resultSet.getRow());
-        resultSet.first();
-        System.out.println("Has the cursor reache the first element? " + resultSet.isFirst());
+    public static void changeTitleToUppercase(Statement statement) throws SQLException {
+        boolean performRollback = false;
+        String query = "SELECT * FROM books";
+        ResultSet resultSet = statement.executeQuery(query);
 
+        while (resultSet.next()) {
+            String newTitle = resultSet.getString("title").toUpperCase();
+            resultSet.updateString("title", newTitle);
+
+            if (performRollback) {
+                resultSet.cancelRowUpdates();
+            } else {
+                resultSet.updateRow();
+                System.out.println("row updated");
+            }
+        }
     }
 }
