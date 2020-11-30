@@ -84,10 +84,6 @@ public class Runner {
         } else {
             System.out.println("Empty optional!");
         }
-
-
-
-
     }
 
 }
