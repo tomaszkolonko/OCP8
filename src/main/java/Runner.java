@@ -21,10 +21,13 @@ public class Runner {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected successfully");
 
-            createANewBookTable(connection);
-            populateTheBookTable(connection);
+//            createANewBookTable(connection);
+//            populateTheBookTable(connection);
             System.out.println("\n=========================================\n");
             readBookTable(connection);
+            System.out.println("\n=========================================\n");
+            playWithTheCursor(connection);
+
 
         } catch (SQLException e) {
             System.out.println("SQL Connection failed");
@@ -58,13 +61,15 @@ public class Runner {
         try {
             statement = connection.createStatement();
             String insertBooks = "INSERT INTO books(isbn, title, price) VALUES"
-                    + "('123-123', 'The nice Sunset', 23),"
-                    + "('443-295', 'Coding Styles by Martin', 99),"
-                    + "('635-152', 'How to find a Hobby', 19),"
-                    + "('837-368', 'Driving a car mad easy', 89),"
-                    + "('443-111', 'History of SBB', 15),"
-                    + "('599-128', 'How to invest in stocks', 23),"
-                    + "('443-223', 'Fermenting Sauerkraut made easy', 31)";
+                    + "('111-111', 'The nice Sunset', 23),"
+                    + "('222-222', 'Coding Styles by Martin', 99),"
+                    + "('333-333', 'How to find a Hobby', 19),"
+                    + "('444-444', 'Driving a car mad easy', 89),"
+                    + "('555-555', 'History of SBB', 15),"
+                    + "('666-666', 'How to invest in stocks', 23),"
+                    + "('777-777', 'Fermenting Sauerkraut made easy', 31),"
+                    + "('888-888', 'The Joy of Kotlin', 31),"
+                    + "('999-999', 'The Clean Coder', 31)";
             statement.execute(insertBooks);
             System.out.println("Successfully populated the 'books' table: ");
         } catch (SQLException e) {
@@ -92,6 +97,31 @@ public class Runner {
         }
     }
 
+    public static void playWithTheCursor(Connection connection) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String retrieveBooks = "SELECT * FROM books";
+            ResultSet resultSet = statement.executeQuery(retrieveBooks);
+
+            resultSet.beforeFirst();
+            System.out.println(resultSet.relative(2));
+            System.out.println(resultSet.relative(12));
+            System.out.println(resultSet.);
+            System.out.println(resultSet.relative(2));
+
+            System.out.println(resultSet.getString(1));
+            System.out.println(resultSet.getString(2));
+
+            System.out.println(resultSet.relative(-10));
+            System.out.println(resultSet.getString(1));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeStatement(statement);
+        }
+    }
 
     private static void closeStatement(Statement statement) {
         try {
